@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  NeoLoad-TcpMockServer:
+    container_name: TcpMockServer
+    image: hrexed/tcpmockserver:latest
+    ports:
+    - "PORT_TO_REPLACE:PORT_TO_REPLACE"
+    environment:
+    - SERVER_PORT=PORT_TO_REPLACE
+    - logging-level=DEBUG

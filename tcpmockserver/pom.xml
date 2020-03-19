@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>tcpgenerator</artifactId>
+        <groupId>com.neotys</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>tcpmockserver</artifactId>
+    <properties>
+        <java.version>1.8</java.version>
+        <tag>0.1</tag>
+        <dockerimage>docker.io/hrexed/tcpmockserver</dockerimage>
+        <SERVER_PORT>1020</SERVER_PORT>
+        <login>DEBUG</login>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <from>
+                        <image>gcr.io/distroless/java:8</image>
+                    </from>
+                    <to>
+                        <image>${dockerimage}</image>
+
+                        <tags>
+                            <tag>${tag}</tag>
+                            <tag>latest</tag>
+                        </tags>
+                    </to>
+                    <allowInsecureRegistries>true</allowInsecureRegistries>
+                    <container>
+                        <ports>
+                            <port>${SERVER_PORT}</port>
+                        </ports>
+                        <environment>
+                            <logging-level>${login}</logging-level>
+                            <SERVER_PORT>${SERVER_PORT}</SERVER_PORT>
+                        </environment>
+                    </container>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
