@@ -16,6 +16,7 @@ public class TCPClient extends AbstractVerticle {
     private String data;
     private Context context;
     private SampleResult sampleResult;
+
     public TCPClient(int port, String host, String data, Context context, SampleResult result) {
         this.port = port;
         this.host = host;
